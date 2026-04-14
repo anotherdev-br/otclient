@@ -2177,7 +2177,7 @@ end
 function onChannelEvent(channelId, name, type)
     local fmt = ChannelEventFormats[type]
     if not fmt then
-        print(('Unknown channel event type (%d).'):format(type))
+        pwarning(('Unknown channel event type (%d).'):format(type))
         return
     end
 

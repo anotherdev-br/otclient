@@ -1,4 +1,4 @@
-CountStashWindow < MainWindow
+CountStashWindow < NewMainWindow
   id: countStashWindow
   !text: tr('Stow Items')
   size: 196 90

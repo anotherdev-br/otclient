@@ -16,10 +16,8 @@
 AttachedEffectManager.register(1, 'Spoke Lighting', 12, ThingCategoryEffect, {
     speed = 0.5,
     onAttach = function(effect, owner)
-        print('onAttach: ', effect:getId(), owner:getName())
     end,
     onDetach = function(effect, oldOwner)
-        print('onDetach: ', effect:getId(), oldOwner:getName())
     end
 })
 

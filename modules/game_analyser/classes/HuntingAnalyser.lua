@@ -624,7 +624,7 @@ function HuntingAnalyser:addLootedItems(item, name)
 				avgMarketValue = modules.game_cyclopedia.Cyclopedia.Items.getMarketOfferAverages(itemId)
 			else
 				-- Fallback: getMarketOfferAverages method not available
-				print(string.format("[LOOT DEBUG] DEBUG: getMarketOfferAverages method not available"))
+				pdebug("[HuntingAnalyser] getMarketOfferAverages method not available")
 			end
 			
 			-- Default Buy Price

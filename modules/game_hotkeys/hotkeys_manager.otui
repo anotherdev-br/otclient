@@ -199,7 +199,7 @@ MainWindow
     anchors.bottom: parent.bottom
     @onClick: modules.game_hotkeys.cancel()
 
-HotkeyAssignWindow < MainWindow
+HotkeyAssignWindow < NewMainWindow
   id: assignWindow
   !text: tr('Button Assign')
   size: 360 150

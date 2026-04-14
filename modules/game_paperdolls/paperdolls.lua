@@ -17,10 +17,8 @@ PaperdollManager.register(1, 'Armadura', 512, {
     addon = 1,
     onlyAddon = true,
     onAttach = function(paperdoll, creature)
-        print('onAttach: ', paperdoll:getId(), creature:getName())
     end,
     onDetach = function(paperdoll, creature)
-        print('onDetach: ', paperdoll:getId(), creature:getName())
     end
 })
 

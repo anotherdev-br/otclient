@@ -1,4 +1,4 @@
-StashWindow < MainWindow
+StashWindow < NewMainWindow
   id: stashWindow
   !text: tr('Supply Stash')
   size: 700 530
@@ -104,7 +104,7 @@ StashItemBox < UICheckBox
     image-color: #ffffff88
     color: #aaaaaa88
 
-StashSelectAmount < MainWindow
+StashSelectAmount < NewMainWindow
   id: stashSelectAmount
   !text: tr('Stash Withdraw')
   size: 196 90

@@ -612,7 +612,7 @@ function Cyclopedia.loadCharacterCombatStats(data, mitigation, additionalSkillsA
                     height = 9
                 })
             else
-                print(string.format("WARNING: Element not found for combat array index %d with key %s.", i, tostring(combatsArray[i][1])))
+                pwarning(string.format("Element not found for combat array index %d with key %s.", i, tostring(combatsArray[i][1])))
             end
             local valor = combatsArray[i][2]
             local porcentaje = valor / 100

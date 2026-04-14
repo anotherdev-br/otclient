@@ -23,7 +23,7 @@ HeadlessWindow < UIWindow
   image-border: 5
   padding: 5
 
-AcceptWindow < Window
+AcceptWindow < NewWindow
   anchors.centerIn: parent
 
 ButtonShop < UIButton

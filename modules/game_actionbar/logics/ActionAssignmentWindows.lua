@@ -85,7 +85,7 @@ function assignSpell(button)
         local spellData = button.cache.spellData
         local spellId = spellData.clientId
         if not spellId then
-            print("Warning Spell ID not found L81 modules/game_actionbar/logics/ActionAssignmentWindows.lua")
+            pwarning("Spell ID not found in ActionAssignmentWindows")
             return
         end
         local clip = Spells.getImageClip(spellId, 'Default')

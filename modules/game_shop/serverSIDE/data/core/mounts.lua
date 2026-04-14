@@ -2,7 +2,7 @@ function readFile()
     local filePath = "data/XML/mounts.xml"
     local file = io.open(filePath, "r")
     if not file then
-        print("Error opening the file: " .. filePath)
+        perror("Could not open file: " .. filePath)
         return nil
     end
     local content = file:read("*a")

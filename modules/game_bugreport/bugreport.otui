@@ -1,4 +1,4 @@
-BugReportWindow < MainWindow
+BugReportWindow < NewMainWindow
   !text: tr('Report Bug')
   size: 280 250
   @onEscape: self:hide()

@@ -229,7 +229,7 @@ function EnterGame.init()
 
     for protoStr, status in pairs(installedClients) do
         if status then
-            print(string.format('Warning: %s recognized as an installed client, but not supported.', protoStr))
+            pwarning(string.format('%s recognized as an installed client, but not supported.', protoStr))
         end
     end
 
@@ -1067,7 +1067,7 @@ function EnterGame.doLoginWithToken()
     local servers = Servers_init or {}
     local serverData = servers[G.host]
     if not (serverData and serverData.useAuthenticator) then
-        print('Authenticator token is disabled for this server.')
+        pinfo('Authenticator token is disabled for this server.')
         return
     end
     

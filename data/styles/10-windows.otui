@@ -91,7 +91,7 @@ WindowPodium < UIWindow
   image-border: 4
   image-border-top: 17
 
-ActionAssignWindow < MainWindow
+ActionAssignWindow < NewMainWindow
   id: assignWindow
   size: 400 215
   font: Verdana Bold-11px

@@ -1,4 +1,4 @@
-TextWindow < MainWindow
+TextWindow < NewMainWindow
   id: textWindow
   size: 300 450
 

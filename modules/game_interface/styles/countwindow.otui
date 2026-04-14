@@ -1,4 +1,4 @@
-CountWindow < MainWindow
+CountWindow < NewMainWindow
   id: countWindow
   !text: tr('Move Stackable Item')
   size: 196 90

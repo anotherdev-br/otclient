@@ -646,7 +646,7 @@ function rewardWallController:onhoverRewardType(event)
             premium = string.format("Reward for Premium Accounts:\n * %d minutes 50%% XP Boost", premiumAmount)
         }
     else
-        print("WARNING: Unknown rewardType:", rewardType)
+        pwarning("Unknown rewardType: " .. tostring(rewardType))
         return
     end
 

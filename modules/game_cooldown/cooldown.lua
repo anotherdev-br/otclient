@@ -56,11 +56,11 @@ end
 function loadIcon(iconId)
     local spell, profile, spellName = Spells.getSpellByIcon(iconId)
     if not spellName then
-        print('[WARNING] loadIcon: empty spellName for server spell id: ' .. iconId)
+        pwarning('loadIcon: empty spellName for server spell id: ' .. iconId)
         return nil, nil
     end
     if not profile then
-        print('[WARNING] loadIcon: empty profile for server spell id: ' .. iconId)
+        pwarning('loadIcon: empty profile for server spell id: ' .. iconId)
         return nil, nil
     end
 
@@ -89,7 +89,7 @@ function loadIcon(iconId)
             progressRect:setPercent(0)
         end
     else
-        print('[WARNING] loadIcon: empty spell icon for server spell id: ' .. iconId)
+        pwarning('loadIcon: empty spell icon for server spell id: ' .. iconId)
         icon = nil
     end
     return icon, spellName
@@ -241,7 +241,7 @@ function onSpellCooldown(iconId, duration)
     end
     local icon, spellName = loadIcon(iconId)
     if not icon then
-        print('[WARNING] Can not load cooldown icon on spell with id: ' .. iconId)
+        pwarning('Can not load cooldown icon on spell with id: ' .. iconId)
         return
     end
     icon:setParent(cooldownPanel)

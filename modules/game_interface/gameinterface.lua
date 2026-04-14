@@ -1855,10 +1855,10 @@ local function movePanel(mainpanel)
                     widget:close()
                     panel:addChild(widget)
                 else
-                    print("Error: Attempt to add a widget that already exists in the target panel")
+                    perror("Attempt to add a widget that already exists in the target panel")
                 end
             else
-                print("Warning: No suitable panel found for widget, unable to move")
+                pwarning("No suitable panel found for widget, unable to move")
             end
         end
     end
