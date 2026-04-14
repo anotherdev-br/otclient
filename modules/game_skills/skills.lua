@@ -940,7 +940,7 @@ function updateHeight()
                 if percentBar then
                     showPercentBar(skillButton, skillSettings[char][skillButton:getId()] ~= 1)
                 end
-                maximumHeight = maximumHeight + skillButton:getHeight() + skillButton:getMarginBottom()
+                maximumHeight = maximumHeight + skillButton:getMarginTop() + skillButton:getHeight() + skillButton:getMarginBottom()
             end
         end
     else
