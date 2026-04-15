@@ -2013,18 +2013,33 @@ function attackNext(previous)
     if foundTarget then
         if previous then
             if prevElement then
+                if modules.game_helper then
+                    modules.game_helper.helperConfig.currentLockedTargetId = prevElement.creature:getId()
+                end
                 g_game.attack(prevElement.creature)
             else
+                if modules.game_helper then
+                    modules.game_helper.helperConfig.currentLockedTargetId = lastElement.creature:getId()
+                end
                 g_game.attack(lastElement.creature)
             end
         else
             if nextElement then
+                if modules.game_helper then
+                    modules.game_helper.helperConfig.currentLockedTargetId = nextElement.creature:getId()
+                end
                 g_game.attack(nextElement.creature)
             else
+                if modules.game_helper then
+                    modules.game_helper.helperConfig.currentLockedTargetId = firstElement.creature:getId()
+                end
                 g_game.attack(firstElement.creature)
             end
         end
     elseif firstElement then
+        if modules.game_helper then
+            modules.game_helper.helperConfig.currentLockedTargetId = firstElement.creature:getId()
+        end
         g_game.attack(firstElement.creature)
     else
         return false
@@ -2414,8 +2429,14 @@ function onBattleButtonMouseRelease(self, mousePosition, mouseButton) -- Interac
         return true
     elseif mouseButton == MouseLeftButton and not g_mouse.isPressed(MouseRightButton) then
         if self.isTarget then
+            if modules.game_helper then
+                modules.game_helper.helperConfig.currentLockedTargetId = 0
+            end
             g_game.cancelAttack()
         else
+            if modules.game_helper then
+                modules.game_helper.helperConfig.currentLockedTargetId = self.creature:getId()
+            end
             g_game.attack(self.creature)
         end
         return true

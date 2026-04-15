@@ -1,0 +1,9 @@
+Module
+  name: game_helper
+  description: RTC Helper
+  author: R!ck && ZLukSrT#8740 && Christianlb && worthdavi bjos
+  sandboxed: true
+  dependencies: [ game_interface, game_battle, game_playerdeath, corelib ]
+  scripts: [ helper ]
+  @onLoad: init()
+  @onUnload: terminate()

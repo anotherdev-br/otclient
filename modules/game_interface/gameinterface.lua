@@ -182,6 +182,9 @@ function bindKeys()
             callback = function()
                 if lastStopAction + 50 > g_clock.millis() then return end
                 lastStopAction = g_clock.millis()
+                if modules.game_helper then
+                    modules.game_helper.helperConfig.currentLockedTargetId = 0
+                end
                 g_game.cancelAttackAndFollow()
             end,
         }
@@ -762,10 +765,16 @@ function createThingMenu(menuPosition, lookThing, useThing, creatureThing)
 
                 if g_game.getAttackingCreature() ~= creatureThing then
                     menu:addOption(tr('Attack'), function()
+                        if modules.game_helper then
+                            modules.game_helper.helperConfig.currentLockedTargetId = creatureThing:getId()
+                        end
                         g_game.attack(creatureThing)
                     end, shortcut)
                 else
                     menu:addOption(tr('Stop Attack'), function()
+                        if modules.game_helper then
+                            modules.game_helper.helperConfig.currentLockedTargetId = 0
+                        end
                         g_game.cancelAttack()
                     end, shortcut)
                 end

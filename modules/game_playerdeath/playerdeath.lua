@@ -42,6 +42,16 @@ function display(deathType, penalty)
     displayDeadMessage()
     openWindow(deathType, penalty)
     scheduleReconnect()
+    -- reset helper on death
+    local helper = modules.game_helper
+    if helper then
+        if helper.isMagicShooterActive() then
+            helper.toggleMagicShooter()
+        end
+        if helper.isAutoTargetActive() then
+            helper.toggleAutoTarget()
+        end
+    end
 end
 
 function displayDeadMessage()
