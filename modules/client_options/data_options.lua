@@ -567,6 +567,12 @@ return {
         value = false,
         action = function(value, options, controller, panels, extraWidgets)
             modules.game_interface.getRightExtraPanel():setOn(value)
+            -- Atualiza largura do painel horizontal se estiver ativo
+            addEvent(function()
+                if modules.game_interface.setRightHorizontalWidth then
+                    modules.game_interface.setRightHorizontalWidth()
+                end
+            end)
             -- Update action bars when right extra panel visibility changes
             if modules.game_actionbar and modules.game_actionbar.updateVisibleWidgetsExternal then
                 addEvent(function()

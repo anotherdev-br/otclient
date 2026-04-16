@@ -1,6 +1,5 @@
 MapMiniWindow
   id: minimapWindow
-  !text: tr('Map View')
   &type: 'miniMap'
   @onClose: modules.game_minimap.onClose()
 
