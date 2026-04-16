@@ -263,6 +263,14 @@ function getButton(id)
     return optionsController.ui.onPanel.options:recursiveGetChildById(id)
 end
 
+-- Atualiza o estado visual (on/off) de um botão pelo seu id
+function setButtonState(buttonId, checked)
+    local button = optionsController.ui.onPanel.options:recursiveGetChildById(buttonId)
+    if button then
+        button:setOn(checked)
+    end
+end
+
 function toggleExtendedViewButtons(extended)
     local optionsPanel = optionsController.ui.onPanel.options
     local specialsPanel = optionsController.ui.onPanel.store

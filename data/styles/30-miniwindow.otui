@@ -363,3 +363,16 @@ FloatingInputWindow < UIWindow
 
   $dragging:
     opacity: 0.8
+
+MapMiniWindow < UIMiniWindow
+  width: 211
+  height: 211
+  text-offset: 20 1
+  text-align: topLeft
+  image-source: /images/ui/map-borderimage
+  image-border: 4
+  image-border-top: 19
+  image-border-bottom: 4
+  focusable: false
+  draggable: true
+  &minimizedHeight: 19

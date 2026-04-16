@@ -544,6 +544,25 @@ return {
             end
         end
     },
+    showRightHorizontalPanel          = {
+        value = false,
+        _generation = 0,
+        action = function(value, options, controller, panels, extraWidgets)
+            local opt = options.showRightHorizontalPanel
+            opt._generation = (opt._generation or 0) + 1
+            local myGen = opt._generation
+            local applyValue = value
+            local function tryApply()
+                if opt._generation ~= myGen then return end
+                if g_game.isOnline() then
+                    modules.game_interface.showRightHorizontalPanel(applyValue)
+                else
+                    scheduleEvent(tryApply, 200)
+                end
+            end
+            tryApply()
+        end
+    },
     showRightExtraPanel               = {
         value = false,
         action = function(value, options, controller, panels, extraWidgets)

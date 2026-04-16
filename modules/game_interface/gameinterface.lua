@@ -5,6 +5,7 @@ gameRightPanel = nil
 gameRightExtraPanel = nil
 gameLeftPanel = nil
 gameLeftExtraPanel = nil
+horizontalRightPanel = nil
 gameSelectedPanel = nil
 panelsList = {}
 panelsRadioGroup = nil
@@ -2068,4 +2069,92 @@ function toggleFocus(value, reason)
     gameLeftPanel:setFocusable(value)
     gameRightExtraPanel:setFocusable(value)
     gameLeftExtraPanel:setFocusable(value)
+end
+
+-- =============================================================
+-- Painel Horizontal Direito (Map View / game_minimap)
+-- =============================================================
+
+function createHorizontalRightPanel()
+    if horizontalRightPanel then return horizontalRightPanel end
+    if not gameRootPanel then return nil end
+    horizontalRightPanel = g_ui.createWidget('GameSidePanel', gameRootPanel)
+    horizontalRightPanel:setId('horizontalRightPanel')
+    horizontalRightPanel:addAnchor(AnchorRight, 'parent', AnchorRight)
+    horizontalRightPanel:addAnchor(AnchorTop, 'parent', AnchorTop)
+    horizontalRightPanel:setHeight(0)
+    horizontalRightPanel:setFocusable(false)
+    horizontalRightPanel:setVisible(true)
+    return horizontalRightPanel
+end
+
+function getHorizontalRightPanel()
+    return horizontalRightPanel
+end
+
+function setRightHorizontalWidth()
+    if not horizontalRightPanel then return end
+    local totalWidth = 0
+    if gameRightPanel and gameRightPanel:isOn() and gameRightPanel:getWidth() > 0 then
+        totalWidth = totalWidth + gameRightPanel:getWidth()
+    end
+    if gameRightExtraPanel and gameRightExtraPanel:isOn() and gameRightExtraPanel:getWidth() > 0 then
+        totalWidth = totalWidth + gameRightExtraPanel:getWidth()
+    end
+    if totalWidth == 0 then totalWidth = 178 end
+    horizontalRightPanel:setWidth(totalWidth)
+end
+
+function showRightHorizontalPanel(visible)
+    local panel = horizontalRightPanel
+    if not panel then
+        panel = createHorizontalRightPanel()
+    end
+    if not panel then return end
+
+    if visible then
+        panel:setHeight(200)
+        setRightHorizontalWidth()
+        -- Mover gameMainRightPanel para abaixo do painel horizontal
+        if gameMainRightPanel then
+            gameMainRightPanel:breakAnchors()
+            gameMainRightPanel:addAnchor(AnchorRight, 'parent', AnchorRight)
+            gameMainRightPanel:addAnchor(AnchorTop, 'horizontalRightPanel', AnchorBottom)
+        end
+        if gameRightExtraPanel then
+            gameRightExtraPanel:breakAnchors()
+            gameRightExtraPanel:addAnchor(AnchorRight, 'gameRightPanel', AnchorLeft)
+            gameRightExtraPanel:addAnchor(AnchorTop, 'horizontalRightPanel', AnchorBottom)
+            gameRightExtraPanel:addAnchor(AnchorBottom, 'parent', AnchorBottom)
+        end
+    else
+        -- Devolver filhos ao painel principal antes de fechar
+        if panel then
+            local children = panel:getChildren()
+            for _, child in pairs(children) do
+                if child and gameMainRightPanel then
+                    child:setParent(gameMainRightPanel)
+                    gameMainRightPanel:moveChildToIndex(child, 1)
+                end
+            end
+        end
+        -- Notificar minimap para voltar ao painel padrão
+        if modules.game_minimap and modules.game_minimap.returnToMainPanel then
+            modules.game_minimap.returnToMainPanel()
+        end
+        panel:setHeight(0)
+        panel:setWidth(0)
+        -- Restaurar âncoras do painel principal
+        if gameMainRightPanel then
+            gameMainRightPanel:breakAnchors()
+            gameMainRightPanel:addAnchor(AnchorRight, 'parent', AnchorRight)
+            gameMainRightPanel:addAnchor(AnchorTop, 'parent', AnchorTop)
+        end
+        if gameRightExtraPanel then
+            gameRightExtraPanel:breakAnchors()
+            gameRightExtraPanel:addAnchor(AnchorRight, 'gameRightPanel', AnchorLeft)
+            gameRightExtraPanel:addAnchor(AnchorTop, 'parent', AnchorTop)
+            gameRightExtraPanel:addAnchor(AnchorBottom, 'parent', AnchorBottom)
+        end
+    end
 end
